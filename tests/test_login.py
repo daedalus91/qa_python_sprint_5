@@ -2,7 +2,6 @@ from pages.pages import MainPage, LoginPage, RegisterPage, ForgotPasswordPage
 
 
 def _register_via_ui(driver, user_data):
-    """Регистрирует нового пользователя через форму регистрации (только UI)."""
     register_page = RegisterPage(driver)
     register_page.open_register_page()
     register_page.fill_form(user_data["name"], user_data["email"], user_data["password"])
@@ -32,16 +31,9 @@ def test_login_via_personal_account_button(driver, user_data):
     main_page.open_main_page()
     main_page.click_header_account()
 
-    # Неавторизованного пользователя "Личный кабинет" ведёт на форму входа.
     login_page = LoginPage(driver)
     login_page.wait_for_login_form()
     login_page.login(user_data["email"], user_data["password"])
-
-    # После успешного входа сайт возвращает на главную (конструктор) —
-    # так же, как и через остальные точки входа, — а не сразу в личный
-    # кабинет. Чтобы убедиться, что вход действительно выполнен, переходим
-    # в личный кабинет ещё раз: при неудачном входе нас снова перекинуло
-    # бы на форму логина, а не на "/account".
     login_page.wait_for_url("/")
     main_page.click_header_account()
     main_page.wait_for_url("/account")
