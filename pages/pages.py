@@ -82,13 +82,13 @@ class MainPage(BasePage):
         self.click(MainPageLocators.FILLING_TAB)
 
     def wait_bun_tab_active(self):
-        self.find(MainPageLocators.BUN_TAB_ACTIVE)
+        return self.find(MainPageLocators.BUN_TAB_ACTIVE)
 
     def wait_sauce_tab_active(self):
-        self.find(MainPageLocators.SAUCE_TAB_ACTIVE)
+        return self.find(MainPageLocators.SAUCE_TAB_ACTIVE)
 
     def wait_filling_tab_active(self):
-        self.find(MainPageLocators.FILLING_TAB_ACTIVE)
+        return self.find(MainPageLocators.FILLING_TAB_ACTIVE)
 
 
 class RegisterPage(BasePage):
